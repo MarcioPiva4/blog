@@ -1,7 +1,8 @@
 import { categorySitemapEntries, sitemapEntries, tagSitemapEntries } from "@/lib/public-data";
 import { resolveTenant } from "@/lib/tenant";
 
-export const revalidate = 3600;
+// Consulta o banco: só no request, nunca no build (o banco ainda não tem tabelas durante o build)
+export const dynamic = "force-dynamic";
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 

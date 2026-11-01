@@ -1,6 +1,7 @@
 import { resolveTenant } from "@/lib/tenant";
 
-export const revalidate = 3600;
+// Consulta o banco: só no request, nunca no build
+export const dynamic = "force-dynamic";
 
 /** ads.txt por domínio, gerado a partir do Publisher ID do AdSense do blog. */
 export async function GET(_req: Request, ctx: { params: Promise<{ domain: string }> }) {

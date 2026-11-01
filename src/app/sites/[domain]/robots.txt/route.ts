@@ -1,6 +1,7 @@
 import { resolveTenant } from "@/lib/tenant";
 
-export const revalidate = 86400;
+// Consulta o banco: só no request, nunca no build
+export const dynamic = "force-dynamic";
 
 export async function GET(_req: Request, ctx: { params: Promise<{ domain: string }> }) {
   const res = await resolveTenant((await ctx.params).domain);

@@ -3,7 +3,8 @@ import { getPublicPost } from "@/lib/public-data";
 import { resolveTenant } from "@/lib/tenant";
 import { readableOn } from "@/lib/color";
 
-export const revalidate = 86400;
+// Consulta o banco: só no request, nunca no build
+export const dynamic = "force-dynamic";
 
 /** Imagem OG automática (/og/<slug>): título do post + marca do blog. Usada quando o post não tem capa. */
 export async function GET(_req: Request, ctx: { params: Promise<{ domain: string; slug: string }> }) {
