@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: blogs
+      POSTGRES_PASSWORD: blogs
+      POSTGRES_DB: blogs
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Produção (Coolify): o app é construído pelo Dockerfile; aqui fica só para testar a imagem localmente.
+  app:
+    build: .
+    profiles: ["app"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://blogs:blogs@db:5432/blogs
+      MEDIA_DIR: /data/media
+    ports:
+      - "3000:3000"
+    volumes:
+      - media:/data/media
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+  media:

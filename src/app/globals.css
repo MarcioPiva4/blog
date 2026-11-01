@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Tokens do painel (shadcn-like, base zinc + indigo) ---------- */
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --radius: 0.625rem;
+  /* Blogs públicos sobrescrevem --brand por blog */
+  --brand: #4f46e5;
+  --brand-foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .admin {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #111113;
+    --muted: #1c1c1f;
+    --muted-foreground: #a1a1aa;
+    --border: #27272a;
+    --primary: #6366f1;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --radius-lg: var(--radius);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-body), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono-code), ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ---------- Tipografia do artigo ---------- */
+.prose-article {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #27272a;
+}
+.prose-article > * + * { margin-top: 1.25em; }
+.prose-article h2 {
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-top: 2em;
+  letter-spacing: -0.01em;
+  color: #09090b;
+  scroll-margin-top: 5rem;
+}
+.prose-article h3 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 650;
+  margin-top: 1.6em;
+  color: #09090b;
+  scroll-margin-top: 5rem;
+}
+.prose-article a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.prose-article ul { list-style: disc; padding-left: 1.4em; }
+.prose-article ol { list-style: decimal; padding-left: 1.4em; }
+.prose-article li + li { margin-top: 0.4em; }
+.prose-article blockquote { border-left: 4px solid var(--brand); padding: 0.25em 0 0.25em 1em; color: #52525b; font-style: italic; }
+.prose-article img { border-radius: 0.75rem; width: 100%; height: auto; }
+.prose-article code { font-family: var(--font-mono); font-size: 0.85em; background: #f4f4f5; padding: 0.15em 0.35em; border-radius: 0.3em; }
+.prose-article pre { background: #18181b; color: #f4f4f5; padding: 1em; border-radius: 0.75rem; overflow-x: auto; font-size: 0.9rem; }
+.prose-article pre code { background: none; padding: 0; color: inherit; }
+.prose-article table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose-article th, .prose-article td { border: 1px solid #e4e4e7; padding: 0.5em 0.75em; text-align: left; }
+.prose-article th { background: #f4f4f5; font-weight: 600; }
+.prose-article hr { border: 0; border-top: 1px solid #e4e4e7; }
+
+.theme-magazine .prose-article,
+.theme-minimal .prose-article { font-family: var(--font-sans); font-size: 1.1rem; }
+.theme-editorial h1,
+.theme-editorial .prose-article h2,
+.theme-editorial .prose-article h3 { font-family: var(--font-serif); }
+
+/* Espaço reservado para anúncio: evita CLS */
+.ad-slot { min-height: 280px; display: flex; align-items: center; justify-content: center; }
